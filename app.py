@@ -81,28 +81,55 @@ def allow_self_signed_https(allowed):
 allow_self_signed_https(True)
 
 
-# Configure Google Sheets credentials
+# Modify the Google Sheets client function
 def get_google_sheets_client():
-    # Scope for Google Sheets and Google Drive
-    scope = [
-        'https://spreadsheets.google.com/feeds',
-        'https://www.googleapis.com/auth/drive'
-    ]
+    try:
+        # Try to get credentials from environment variable
+        credentials_path = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        
+        if credentials_path and os.path.exists(credentials_path):
+            # Scope for Google Sheets and Google Drive
+            scope = [
+                'https://spreadsheets.google.com/feeds',
+                'https://www.googleapis.com/auth/drive'
+            ]
 
-    # Path to your service account JSON key file
-    # IMPORTANT: You need to download this from Google Cloud Console
-    creds = ServiceAccountCredentials.from_json_keyfile_name('cynoia-chatbot-1e2bdc0ca4d1.json', scope)
+            # Load credentials from the specified path
+            creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
+        else:
+            # Fallback to reading from environment variable content
+            credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+            
+            if not credentials_json:
+                raise ValueError("No Google Sheets credentials found")
+            
+            # Parse the JSON credentials
+            creds_dict = json.loads(credentials_json)
+            
+            # Scope for Google Sheets and Google Drive
+            scope = [
+                'https://spreadsheets.google.com/feeds',
+                'https://www.googleapis.com/auth/drive'
+            ]
 
-    # Authorize the client
-    client = gspread.authorize(creds)
+            # Create credentials from JSON
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
-    return client
+        # Authorize the client
+        client = gspread.authorize(creds)
+        return client
+    
+    except Exception as e:
+        st.error(f"Error initializing Google Sheets client: {e}")
+        return None
 # Function to save conversation to Google Sheets
 def save_conversation_to_google_sheets(user_question, bot_response, feedback):
     try:
         # Get the Google Sheets client
         client = get_google_sheets_client()
-
+        if client is None:
+            st.error("Could not initialize Google Sheets client")
+            return False
         # Open the specific spreadsheet (replace with your spreadsheet name)
         # If the spreadsheet doesn't exist, you'll need to create it first
         spreadsheet = client.open('Cynoia Conversations')

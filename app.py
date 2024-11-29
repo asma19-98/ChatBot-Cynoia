@@ -91,7 +91,7 @@ def get_google_sheets_client():
 
     # Path to your service account JSON key file
     # IMPORTANT: You need to download this from Google Cloud Console
-    creds = ServiceAccountCredentials.from_json_keyfile_name('/content/cynoia-chatbot-1e2bdc0ca4d1.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('cynoia-chatbot-1e2bdc0ca4d1.json', scope)
 
     # Authorize the client
     client = gspread.authorize(creds)

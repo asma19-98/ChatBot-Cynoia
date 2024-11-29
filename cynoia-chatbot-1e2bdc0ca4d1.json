@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cynoia-chatbot",
+  "private_key_id": "1e2bdc0ca4d134d87ec55797380c6976d479dcd6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDj54KVvfA2+KIH\nL/YjjgAlXyupUCipshZn7XMjtYJaH3QpBWDbYfXG8KEdF/fYjRCLm+EfRZODJm5B\nl2jt/Cr0W5iZja1I0ijn3Yisn/SUa3YbuCkODvJ+AjbDzEfoFsgwRlZ1l9tW0kK4\n9U/iRm5zoGfhfZD/bPQgqRsKy+gfo5ZLU9iAaL3aUuLNxQQXbGyKAXzAEBaZlALt\nsKs2qrNnsxMZwhrZd2hlgF0L1BEHmkMZGlAQkDRpFYq+MbwIxWQSSdDeTp5P6Knf\nbT73sowEpLcLVcF/9fmKOhfcPlULQJZhi03tPjbMOs/2SMQJOKkoRg+bXiteNkEL\nQCtqZq8ZAgMBAAECggEAEqxaov3J05s6HWgk3QNqyCUc3PXUKxlMJC5Mt5GM8Wjv\n2deWuMr1OhxnuwxGcrAWObYnMyp+fGm28XlgL9WwSE7D+VrmJpgPoXXhl7FQdyO5\n7OoBNSVs4X25coAHqUDKnMf6mA59+oZmUKTK65GVRbSQJmXlLkSFWTK55D/SUFst\nm0H17KBqvs5yh2COeaWjLqx7BdtFBqNJVJ/IAl3QvKUk5ladEw54gDjirSAl3F5s\n6UWivck0VaHQwB9hZmpzCKSf0CSonNZFP8yIiUuZsEJ9VGqOuw8Ak4SMzb9Uejse\nAldlPMl5Ij/6Z+bTqkxbSFB8YAI778Bu91HW0p4ZYQKBgQD8qpWFbu+9u1mon9v+\npdvf6VUpD4ZfuTEQwKJCydUBDDykKgPDuJnuO+E3tY/9Z2FlK+HVRe8dtcTOceD1\nLFSpZprxK4a4ej882ZogmugfPQ2p5zXlCp4hYWXHDQDAV6PneXuQdCl/WW56Fig6\nxsEi1r0niS9jc3by5oU886rLUQKBgQDm6Un0T6LE+Fwl0Zu/e8kTV0I0wbLf/Pz7\n1ZeVuIOxEmtJjHLpXJlfGR6rAPX5f9yCEoYOq2ex3WSS3zfamJtUJ3los7lJCJJi\nEPSCsIxagM8NerTojNwA5XiiXcry5DxJMenuNh++vnC4td1P3ZMi4p6HoDYyaRdB\nF6ot1lAlSQKBgQD5XMHEtwAVGNob+el9IOQn0Hkj1RahUnyCNBvwHpICPrl6q5yb\nhY0l+iMEgERjq6wL1YtEmYisocBinzGNxvqnVYSFkJedackPnRLoKvn8Gp1pma8v\nJZN7Dk0MbmDXc6dnxBWXM43hCbpm84cwuwfSAm0cn+ANHt++SpQk27csgQKBgAPc\nkugLDOXOYXwgbUJeh5ZTN0A6nQsx5+kuQUK3uzwS2sh4GNPeQJJekSy672IkyUND\nnApSw4Et+qiaIwz80Fwv7M/bcZXPFuOc9Pnaif5ZeRz4mF3rPSKms8XDW8mEF54B\nv6/EJ/PAq5HrOLBFPFixAYWzIDTnnQPxqV7q3pxBAoGBAKdn1th6AoHJK1C26uP8\ndH7fFnox5kaSfmsudWk9DKFHARGNQnuTyOijrHQIEgGmMzm/483hkdSDpavI4tBw\nXQtZYdny/y3pgZ9Q1s/wEXc4p3NxJ5Q9TVMe4QiT/DRb1FQuCe7PFLaccDRwS1lz\ndq4DibPh9OtzVwo9Gip7JbXf\n-----END PRIVATE KEY-----\n",
+  "client_email": "cynoia-chatbot-service@cynoia-chatbot.iam.gserviceaccount.com",
+  "client_id": "115397880889340161798",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cynoia-chatbot-service%40cynoia-chatbot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

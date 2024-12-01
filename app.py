@@ -227,7 +227,7 @@ def send_request_to_azure(system_prompt: str, user_prompt: str, temperature: flo
         return f"Error: {str(e)}"
 
 # Streamlit UI
-def main():
+   def main():
     st.title("ChatBot Cynoia")
 
     # Initialize session state for messages and feedback
@@ -241,36 +241,38 @@ def main():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-            # Add feedback buttons for assistant messages
+            # Add feedback buttons for assistant messages immediately
             if message["role"] == "assistant":
-                col1, col2 = st.columns(2)
-                with col1:
-                    like = st.button("👍", key=f"like_{i}")
-                with col2:
-                    dislike = st.button("👎", key=f"dislike_{i}")
+                feedback_container = st.container()
+                with feedback_container:
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        like = st.button("👍", key=f"like_{i}")
+                    with col2:
+                        dislike = st.button("👎", key=f"dislike_{i}")
 
-                # Handle feedback
-                if like:
-                    st.session_state.message_feedbacks[i] = True
-                    # Ensure there's a previous user message to reference
-                    if i > 0 and st.session_state.messages[i-1]["role"] == "user":
-                        save_conversation_to_google_sheets(
-                            st.session_state.messages[i-1]["content"],  # User question
-                            message["content"],  # Bot response
-                            True  # Positive feedback
-                        )
-                    st.success("Thank you for your positive feedback!")
+                    # Handle feedback
+                    if like:
+                        st.session_state.message_feedbacks[i] = True
+                        # Ensure there's a previous user message to reference
+                        if i > 0 and st.session_state.messages[i-1]["role"] == "user":
+                            save_conversation_to_google_sheets(
+                                st.session_state.messages[i-1]["content"],  # User question
+                                message["content"],  # Bot response
+                                True  # Positive feedback
+                            )
+                        st.success("Thank you for your positive feedback!")
 
-                if dislike:
-                    st.session_state.message_feedbacks[i] = False
-                    # Ensure there's a previous user message to reference
-                    if i > 0 and st.session_state.messages[i-1]["role"] == "user":
-                        save_conversation_to_google_sheets(
-                            st.session_state.messages[i-1]["content"],  # User question
-                            message["content"],  # Bot response
-                            False  # Negative feedback
-                        )
-                    st.warning("Thank you for your feedback. We'll work on improving!")
+                    if dislike:
+                        st.session_state.message_feedbacks[i] = False
+                        # Ensure there's a previous user message to reference
+                        if i > 0 and st.session_state.messages[i-1]["role"] == "user":
+                            save_conversation_to_google_sheets(
+                                st.session_state.messages[i-1]["content"],  # User question
+                                message["content"],  # Bot response
+                                False  # Negative feedback
+                            )
+                        st.warning("Thank you for your feedback. We'll work on improving!")
 
     # User input
     user_input = st.chat_input("Type your message here:")
@@ -282,10 +284,36 @@ def main():
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        # Send user input to Azure model
+        # Send user input to Azure model and display response with feedback
         with st.chat_message("assistant"):
             response = send_request_to_azure(system_prompt, user_input)
             st.markdown(response)
+
+            # Add feedback buttons immediately after the response
+            col1, col2 = st.columns(2)
+            with col1:
+                like = st.button("👍", key=f"like_{len(st.session_state.messages)}")
+            with col2:
+                dislike = st.button("👎", key=f"dislike_{len(st.session_state.messages)}")
+
+            # Handle feedback for the latest message
+            if like:
+                st.session_state.message_feedbacks[len(st.session_state.messages) - 1] = True
+                save_conversation_to_google_sheets(
+                    user_input,  # User question
+                    response,  # Bot response
+                    True  # Positive feedback
+                )
+                st.success("Thank you for your positive feedback!")
+
+            if dislike:
+                st.session_state.message_feedbacks[len(st.session_state.messages) - 1] = False
+                save_conversation_to_google_sheets(
+                    user_input,  # User question
+                    response,  # Bot response
+                    False  # Negative feedback
+                )
+                st.warning("Thank you for your feedback. We'll work on improving!")
 
         # Add bot response to session state
         st.session_state.messages.append({"role": "assistant", "content": response})

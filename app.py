@@ -227,7 +227,7 @@ def send_request_to_azure(system_prompt: str, user_prompt: str, temperature: flo
         return f"Error: {str(e)}"
 
 # Streamlit UI
-   def main():
+def main():
     st.title("ChatBot Cynoia")
 
     # Initialize session state for messages and feedback
